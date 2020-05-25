@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: "Nunito";
+        }
+        .input{
+            text-align: center;
+            margin: 100px;
+        }
+        input[type="text"]{
+            height: 50px;
+            width:600px;
+            background: white;
+            font-family: "Nunito";
+            font-weight: bold;
+            font-size: 20px;
+            border: none;
+            border-radius: 2px;
+            padding:10px 10px;
+        }
+        input[type="sumbit"]{
+            height: 50px;
+            width:100px;
+            background: white;
+            font-family: "Nunito";
+            font-weight: bold;
+            font-size: 20px;
+            border: none;
+            border-radius: 2px;
+
+        }
+        .display{
+            text-align: center;
+        }
+
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="input">
+        <input type= "text" class ="inputValue" placeholder="Enter A City">
+        <input type="submit"  value = "Submit" class = "button">
+    </div>
+    <div class="display">
+        <h1 class = "name">
+        </h1>
+<p class="desc">
+    
+</p>
+<p class="temp">
+
+</p>
+        
+    </div>
+    <script>
+        window.onload = function() {
+            var button = document.getElementsByClassName("button")[0];
+        var inputValue = document.getElementsByClassName("inputValue")[0];
+        var name1 = document.getElementsByClassName("name");
+        var desc1 = document.getElementsByClassName("desc")[0];
+        var temp1 = document.getElementsByClassName("temp")[0];
+        console.log(inputValue);
+      button.addEventListener("click", function(){
+          
+        fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=faf7b2e0f66ed3203f156b679eb3fa36')
+        .then(res => res.json())
+        . then(data => {
+console.log(data.name)
+var nameValue = data.name;
+var tempValue = data.main.temp;
+var descValue = data.weather[0].description;
+document.getElementsByTagName('h1')[0].innerHTML=nameValue;
+console.log(parseInt(tempValue));
+temp1.innerHTML = (9*(parseFloat(tempValue)- 273.15))/5 + 32 ;
+desc1.innerHTML = descValue;
+})
+.catch(err => alert("City Does Not Exist"))
+      });
+};
+     
+
+
+    </script>
+</body>
+</html>
