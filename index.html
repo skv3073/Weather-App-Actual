@@ -61,6 +61,9 @@
 <p class="temp">
 
 </p>
+<p class="temp_c">
+
+</p>
         
     </div>
     <script>
@@ -70,6 +73,7 @@
         var name1 = document.getElementsByClassName("name");
         var desc1 = document.getElementsByClassName("desc")[0];
         var temp1 = document.getElementsByClassName("temp")[0];
+        var tempC = document.getElementsByClassName("temp_c")[0];
         console.log(inputValue);
       button.addEventListener("click", function(){
           
@@ -82,7 +86,11 @@ var tempValue = data.main.temp;
 var descValue = data.weather[0].description;
 document.getElementsByTagName('h1')[0].innerHTML=nameValue;
 console.log(parseInt(tempValue));
-temp1.innerHTML = (9*(parseFloat(tempValue)- 273.15))/5 + 32 ;
+var temp_f = (9*(parseFloat(tempValue)- 273.15))/5 + 32;
+var temp_c = tempValue - 273.15;
+temp1.innerHTML = temp_f + " Fahrenheit";
+console.log(temp_c);
+tempC.innerHTML = temp_c + " Celcius";
 desc1.innerHTML = descValue;
 })
 .catch(err => alert("City Does Not Exist"))
