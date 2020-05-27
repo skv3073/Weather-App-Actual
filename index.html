@@ -92,6 +92,10 @@ temp1.innerHTML = temp_f + " Fahrenheit";
 console.log(temp_c);
 tempC.innerHTML = temp_c + " Celcius";
 desc1.innerHTML = descValue;
+if(temp_f > 60)
+{
+    document.body.style.backgroundImage = "url('https://media.istockphoto.com/photos/sun-on-blue-sky-with-clouds-picture-id824800468?k=6&m=824800468&s=612x612&w=0&h=TxYoFJ6xbJZziDcgEPZW5FCGzSPs4KlxyhkgyDhYaE4=')";
+}
 })
 .catch(err => alert("City Does Not Exist"))
       });
